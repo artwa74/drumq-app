@@ -1,0 +1,11 @@
+{
+  "name": "DrumQ — Queue Manager",
+  "short_name": "DrumQ",
+  "description": "จัดการคิวงานและคนแทน",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#ff5a1f",
+  "lang": "th",
+  "icons": []
+}

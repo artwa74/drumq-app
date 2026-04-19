@@ -61,8 +61,8 @@ export default function CalendarPage() {
           <div className="text-[12px] text-ink-mute mb-1.5">
             {monthEvents.length} งานในเดือนนี้
           </div>
-          <h1 className="font-display text-[32px] lg:text-[40px] font-bold tracking-[-0.03em] leading-none">
-            {MONTHS[m]} <span className="text-ink-mute font-medium num">{y+543}</span>
+          <h1 className="display text-[36px] lg:text-[44px] leading-none">
+            <span className="italic-serif text-brand-hot">{MONTHS[m]}</span> <span className="text-ink-mute num font-normal">{y+543}</span>
           </h1>
         </div>
         <div className="flex items-center gap-2">

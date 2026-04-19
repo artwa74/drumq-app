@@ -62,8 +62,8 @@ export default function SettingsPage() {
 
   return (
     <div className="pb-8">
-      <h1 className="font-display text-[30px] font-bold tracking-[-0.035em]">ตั้งค่า</h1>
-      <p className="text-ink-mute text-sm mt-1 mb-5">จัดการข้อมูลหลังบ้าน</p>
+      <div className="text-[12px] text-ink-mute mb-1.5">จัดการข้อมูลหลังบ้าน</div>
+      <h1 className="display text-[36px] lg:text-[44px] leading-none mb-6">Set<span className="italic-serif text-brand-hot">tings</span></h1>
 
       <h3 className="text-[11px] font-bold text-ink-dim uppercase tracking-widest mb-2">ข้อมูลหลัก</h3>
       <Row href="/settings/venues" icon={HomeIcon} name="ร้าน" sub={`${db.venues.length} ร้าน`} />

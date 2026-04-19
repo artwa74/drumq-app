@@ -34,7 +34,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="hidden lg:flex fixed top-0 left-0 bottom-0 w-[240px] flex-col border-r border-line bg-white z-40">
+    <aside className="hidden lg:flex fixed top-0 left-0 bottom-0 w-[200px] flex-col border-r border-line bg-white z-40">
       <div className="px-5 py-5 border-b border-line">
         <BrandLockup />
       </div>

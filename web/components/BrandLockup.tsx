@@ -8,8 +8,8 @@ export default function BrandLockup() {
         </svg>
         <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-brand-hot ring-2 ring-white" />
       </div>
-      <div className="font-display text-[17px] font-bold tracking-[-0.02em] text-ink">
-        Drum<span className="text-brand-hot">Q</span>
+      <div className="display text-[18px] leading-none tracking-[-0.025em] text-ink">
+        Drum<span className="italic-serif text-brand-hot">Q</span>
       </div>
     </div>
   );

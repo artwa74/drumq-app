@@ -44,8 +44,8 @@ export default function HomePage() {
           <div className="text-[12px] text-ink-mute mb-1.5">
             {dayOfWeek(today)} · {nowDate.toLocaleDateString('th-TH',{day:'numeric',month:'long',year:'numeric'})}
           </div>
-          <h1 className="font-display text-[32px] lg:text-[36px] font-bold tracking-[-0.025em] leading-none">
-            Overview
+          <h1 className="display text-[36px] lg:text-[44px] leading-none">
+            Over<span className="italic-serif text-brand-hot">view</span>
           </h1>
         </div>
         <Link href="/events/new" className="btn-brand hidden lg:inline-flex">
@@ -71,7 +71,7 @@ export default function HomePage() {
 
           {/* Upcoming */}
           <div className="flex items-center justify-between mt-8 mb-3">
-            <h2 className="font-display text-[18px] font-bold tracking-tight">งานที่จะถึง</h2>
+            <h2 className="display text-[20px] leading-none">งานที่<span className="italic-serif text-brand-hot">จะถึง</span></h2>
             {m.upcoming.length > 0 && (
               <Link href="/calendar" className="text-brand text-[13px] font-medium inline-flex items-center gap-0.5 hover:gap-1 transition-all">
                 ดูทั้งหมด <ArrowUpRight size={13}/>
@@ -146,7 +146,13 @@ function TodayCard({ ev, extra, sub, start, end }: any) {
         <span className="text-[10.5px] font-semibold text-brand-hot uppercase tracking-wider">วันนี้ · LIVE</span>
         {extra > 0 && <span className="text-[11px] text-ink-mute ml-auto">+{extra} รอบ</span>}
       </div>
-      <div className="font-display text-[22px] lg:text-[26px] font-bold tracking-[-0.02em] leading-tight mb-2">{ev.venueName}</div>
+      <div className="display text-[26px] lg:text-[30px] leading-tight mb-2">{(() => {
+        const parts = ev.venueName.split(' ');
+        return <>
+          {parts[0]}
+          {parts.length > 1 && <span className="italic-serif text-brand-hot"> {parts.slice(1).join(' ')}</span>}
+        </>;
+      })()}</div>
       <div className="flex items-center gap-4 text-[13px] text-ink-mute">
         <span>{sub || 'ยังไม่ระบุ'}</span>
         <span className="num">{start}–{end}</span>

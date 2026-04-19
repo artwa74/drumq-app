@@ -27,6 +27,8 @@ body {
 
 @layer components {
   .num { font-family: var(--font-display); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .italic-serif { font-family: var(--font-serif), Georgia, serif; font-style: italic; font-weight: 400; }
+  .display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.025em; }
 
   /* Primary — solid, square */
   .btn-brand {

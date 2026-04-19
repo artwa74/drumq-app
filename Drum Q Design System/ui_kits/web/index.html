@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>Drum Q — Web UI Kit (v2)</title>
+  <meta name="viewport" content="width=1240">
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Bebas+Neue&family=Inter:wght@200;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; transition: background 200ms, color 200ms; font-family: var(--app-body); background: var(--app-bg); color: var(--app-ink); }
+
+    /* Palette: Linear Graphite — cool gray + electric indigo (Linear/Vercel) */
+    body[data-palette="graphite"] {
+      --app-bg: #fafafb;
+      --app-surface: #ffffff;
+      --app-surface-2: #f3f3f5;
+      --app-ink: #1a1b23;
+      --app-ink-mute: #64646e;
+      --app-ink-dim: #a8a8b3;
+      --app-line: #ececef;
+      --app-line-strong: #d4d4d9;
+      --app-brand: #5e6ad2;
+      --app-brand-hover: #7680e0;
+      --app-accent: #f25c54;
+      --app-accent-hover: #e54235;
+      --app-invert-bg: #1a1b23;
+      --app-invert-text: #fff;
+      --app-hero-grad: linear-gradient(135deg, #5e6ad2 0%, #8b5cf6 100%);
+    }
+    /* Palette: Notion Warm — warm neutral + burnt orange (Notion/Anthropic) */
+    body[data-palette="notion"] {
+      --app-bg: #faf9f5;
+      --app-surface: #ffffff;
+      --app-surface-2: #f0ede4;
+      --app-ink: #2b2826;
+      --app-ink-mute: #6b655d;
+      --app-ink-dim: #a8a193;
+      --app-line: #ebe7db;
+      --app-line-strong: #d4cfc0;
+      --app-brand: #cc7843;
+      --app-brand-hover: #b8693a;
+      --app-accent: #d4654d;
+      --app-accent-hover: #bf543e;
+      --app-invert-bg: #2b2826;
+      --app-invert-text: #faf9f5;
+      --app-hero-grad: linear-gradient(135deg, #e89968 0%, #cc5a3a 100%);
+    }
+    /* Palette: Arc Mist — soft pastel + sage (Arc/Raycast) */
+    body[data-palette="arc"] {
+      --app-bg: #f5f6f3;
+      --app-surface: #fcfdfa;
+      --app-surface-2: #ebeee5;
+      --app-ink: #2a352e;
+      --app-ink-mute: #6b7a70;
+      --app-ink-dim: #a5b2a9;
+      --app-line: #e3e7dc;
+      --app-line-strong: #c8d0bf;
+      --app-brand: #7a9d7e;
+      --app-brand-hover: #8fb094;
+      --app-accent: #e89b7a;
+      --app-accent-hover: #dc8560;
+      --app-invert-bg: #3a4a3f;
+      --app-invert-text: #fcfdfa;
+      --app-hero-grad: linear-gradient(135deg, #f4b89b 0%, #d97a5a 100%);
+    }
+
+    /* Type: Editorial — sans + serif italic mix */
+    body[data-type="editorial"] { --app-display: 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; --app-display-italic: 'Playfair Display', Georgia, serif; --app-body: 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; --app-display-weight: 800; --app-display-tracking: -0.035em; }
+    /* Type: Brutal — condensed heavy caps */
+    body[data-type="brutal"] { --app-display: 'Bebas Neue', 'Inter', system-ui, sans-serif; --app-display-italic: 'Bebas Neue', system-ui, sans-serif; --app-body: 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; --app-display-weight: 400; --app-display-tracking: 0.01em; }
+    /* Type: Whisper — ultra-thin display */
+    body[data-type="whisper"] { --app-display: 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; --app-display-italic: 'Playfair Display', Georgia, serif; --app-body: 'Inter', 'IBM Plex Sans Thai', system-ui, sans-serif; --app-display-weight: 200; --app-display-tracking: -0.025em; }
+
+    .num { font-family: var(--app-display); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-weight: var(--app-display-weight); }
+    .display { font-family: var(--app-display); font-weight: var(--app-display-weight); letter-spacing: var(--app-display-tracking); }
+    .italic-serif { font-family: var(--app-display-italic); font-style: italic; font-weight: 400; }
+    body[data-type="brutal"] .display-caps { text-transform: uppercase; }
+    body[data-type="brutal"] h1.display, body[data-type="brutal"] .display-h1 { font-size: 1.2em; text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.95; }
+
+    .btn-brand { background: var(--app-brand); color: #fff; font-weight: 600; border-radius: 8px; padding: 9px 18px; font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; font-family: inherit; transition: background 120ms, transform 120ms; }
+    .btn-brand:hover { background: var(--app-brand-hover); }
+    .btn-brand:active { transform: scale(0.98); }
+    .btn-outline { background: var(--app-surface); color: var(--app-ink); border: 1px solid var(--app-line); font-weight: 600; border-radius: 8px; padding: 9px 18px; font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: inherit; transition: background 120ms; }
+    .btn-outline:hover { background: var(--app-surface-2); border-color: var(--app-line-strong); }
+    @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+  </style>
+</head>
+<body data-palette="graphite" data-type="editorial" data-screen-label="Drum Q Web App v2">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="v2/BrandLockupV2.jsx"></script>
+  <script type="text/babel" src="v2/ChromeV2.jsx"></script>
+  <script type="text/babel" src="v2/OverviewV2.jsx"></script>
+  <script type="text/babel" src="v2/ViewsV2.jsx"></script>
+  <script type="text/babel" src="v2/DataV2.jsx"></script>
+  <script type="text/babel" src="v2/ListPrimsV2.jsx"></script>
+  <script type="text/babel" src="v2/VenuesPageV2.jsx"></script>
+  <script type="text/babel" src="v2/MusiciansPageV2.jsx"></script>
+  <script type="text/babel" src="v2/RosterPageV2.jsx"></script>
+  <script type="text/babel" src="v2/BulkPageV2.jsx"></script>
+  <script type="text/babel" src="v2/AppV2.jsx"></script>
+
+  <script>
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "palette": "arc",
+      "type": "brutal"
+    }/*EDITMODE-END*/;
+
+    (function initTweaks() {
+      const saved = JSON.parse(localStorage.getItem('drumq-v2-tweaks') || 'null') || TWEAK_DEFAULTS;
+      document.body.dataset.palette = saved.palette;
+      document.body.dataset.type = saved.type;
+
+      let panel = null;
+      function ensurePanel() {
+        if (panel) return panel;
+        panel = document.createElement('div');
+        panel.id = 'tweaks-panel';
+        panel.style.cssText = 'position:fixed; bottom:20px; right:20px; z-index:9999; background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,0.12); width:260px; font-family:Inter, system-ui, sans-serif; color:#0c0c10;';
+        panel.innerHTML = `
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#5a5a66; margin-bottom:12px;">Tweaks</div>
+          <div style="font-size:11px; font-weight:600; color:#5a5a66; margin-bottom:6px;">Palette</div>
+          <div id="pal-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:14px;"></div>
+          <div style="font-size:11px; font-weight:600; color:#5a5a66; margin-bottom:6px;">Type vibe</div>
+          <div id="type-row" style="display:grid; grid-template-columns:1fr; gap:4px;"></div>
+        `;
+        document.body.appendChild(panel);
+        const pals = [
+          { id: 'graphite', label: 'Graphite', bg: '#fafafb', ink: '#1a1b23', dot: '#5e6ad2' },
+          { id: 'notion', label: 'Notion', bg: '#faf9f5', ink: '#2b2826', dot: '#cc7843' },
+          { id: 'arc', label: 'Arc Mist', bg: '#f5f6f3', ink: '#2a352e', dot: '#7a9d7e' },
+        ];
+        const palRow = panel.querySelector('#pal-row');
+        pals.forEach(p => {
+          const b = document.createElement('button');
+          b.style.cssText = `border:2px solid ${document.body.dataset.palette === p.id ? '#0c0c10' : '#e5e5e5'}; background:${p.bg}; color:${p.ink || '#fff'}; border-radius:8px; padding:10px 6px; cursor:pointer; font-family:inherit; font-size:10px; font-weight:600; position:relative;`;
+          b.innerHTML = `<span style="display:inline-block; width:6px; height:6px; border-radius:999px; background:${p.dot}; margin-right:4px;"></span>${p.label}`;
+          b.onclick = () => setKey('palette', p.id);
+          palRow.appendChild(b);
+        });
+        const types = [
+          { id: 'editorial', label: 'Editorial — sans + serif italic' },
+          { id: 'brutal', label: 'Brutal — condensed heavy caps' },
+          { id: 'whisper', label: 'Whisper — ultra-thin display' },
+        ];
+        const typeRow = panel.querySelector('#type-row');
+        types.forEach(t => {
+          const b = document.createElement('button');
+          const active = document.body.dataset.type === t.id;
+          b.style.cssText = `border:1px solid ${active ? '#0c0c10' : '#e5e5e5'}; background:${active ? '#fafafa' : '#fff'}; color:#0c0c10; border-radius:6px; padding:8px 10px; cursor:pointer; font-family:inherit; font-size:11.5px; font-weight:${active ? '600' : '500'}; text-align:left;`;
+          b.textContent = t.label;
+          b.onclick = () => setKey('type', t.id);
+          typeRow.appendChild(b);
+        });
+        return panel;
+      }
+      function setKey(key, value) {
+        document.body.dataset[key] = value;
+        const cur = JSON.parse(localStorage.getItem('drumq-v2-tweaks') || 'null') || TWEAK_DEFAULTS;
+        cur[key] = value;
+        localStorage.setItem('drumq-v2-tweaks', JSON.stringify(cur));
+        if (window.parent !== window) window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: value } }, '*');
+        if (panel) { panel.remove(); panel = null; ensurePanel(); panel.style.display = 'block'; }
+      }
+      window.addEventListener('message', (e) => {
+        if (!e.data) return;
+        if (e.data.type === '__activate_edit_mode') ensurePanel().style.display = 'block';
+        if (e.data.type === '__deactivate_edit_mode' && panel) panel.style.display = 'none';
+      });
+      if (window.parent !== window) window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    })();
+  </script>
+
+  <script type="text/babel">
+    ReactDOM.createRoot(document.getElementById('root')).render(<AppV2/>);
+  </script>
+</body>
+</html>

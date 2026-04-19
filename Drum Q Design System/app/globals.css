@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html, body {
+  background: #ffffff;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+}
+
+body {
+  background: #ffffff;
+  min-height: 100vh;
+  padding-top: var(--safe-top);
+  padding-bottom: calc(80px + var(--safe-bottom));
+}
+@media (min-width: 1024px) {
+  body { padding-bottom: 0; }
+}
+
+@layer components {
+  .num { font-family: var(--font-display); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+  /* Primary — solid, square */
+  .btn-brand {
+    @apply bg-brand text-white font-semibold rounded-lg
+           px-5 py-2.5 inline-flex items-center justify-center gap-2
+           text-[14px] transition active:scale-[0.98];
+  }
+  .btn-brand:hover { background: #262626; }
+  .btn-accent {
+    @apply bg-brand-hot text-white font-semibold rounded-lg
+           px-5 py-2.5 inline-flex items-center justify-center gap-2
+           text-[14px] transition active:scale-[0.98];
+  }
+  .btn-accent:hover { background: #be123c; }
+  /* Outline — minimal */
+  .btn-outline {
+    @apply bg-white text-ink font-semibold rounded-lg
+           px-5 py-2.5 border border-line inline-flex items-center justify-center gap-2
+           text-[14px] transition hover:bg-surface-2 hover:border-line-strong active:scale-[0.98];
+  }
+  /* Ghost — text button */
+  .btn-ghost {
+    @apply bg-transparent text-ink-mute font-medium rounded-lg
+           px-3 py-2 inline-flex items-center justify-center gap-2
+           text-[14px] transition hover:bg-surface-2 hover:text-ink;
+  }
+
+  .chip {
+    @apply px-3 py-1.5 rounded-md text-[13px] font-medium bg-white border border-line text-ink-mute cursor-pointer transition hover:border-line-strong;
+  }
+  .chip-active { @apply bg-brand text-white border-brand; }
+
+  .input {
+    @apply w-full bg-white border border-line text-ink rounded-lg px-3.5 py-2.5 text-[14px] font-medium
+           transition placeholder:text-ink-dim
+           focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/15;
+  }
+  .list-row {
+    @apply flex items-center gap-3 bg-white rounded-lg p-3.5 mb-1.5 border border-line
+           transition hover:border-line-strong cursor-pointer;
+  }
+  .icon-circle {
+    @apply flex-none w-9 h-9 rounded-lg bg-surface-2 border border-line grid place-items-center text-ink-mute;
+  }
+  .avatar-init {
+    @apply flex-none w-9 h-9 rounded-lg bg-brand text-white font-bold grid place-items-center font-display tracking-tight text-[12px];
+  }
+
+  .card-soft { @apply bg-white border border-line rounded-xl; }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Keep light always for now since user wants white */
+  html, body { background: #ffffff; color: #0f172a; }
+}

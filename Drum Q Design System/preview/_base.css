@@ -1,0 +1,7 @@
+@import url('../colors_and_type.css');
+html, body { margin: 0; padding: 0; background: var(--surface); color: var(--ink); font-family: var(--font-sans); }
+.card { padding: 20px 24px; box-sizing: border-box; width: 100%; min-height: 100%; }
+.row { display: flex; align-items: center; gap: 12px; }
+.divider { height: 1px; background: var(--line); margin: 12px 0; }
+.eyebrow-inline { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute); font-weight: 700; }
+.mono-label { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: 11px; color: var(--ink-dim); letter-spacing: 0; font-weight: 500; }

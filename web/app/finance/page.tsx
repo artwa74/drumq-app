@@ -36,8 +36,8 @@ export default function FinancePage() {
 
   return (
     <div className="pb-8">
-      <h1 className="font-display text-[30px] font-bold tracking-[-0.035em]">การเงิน</h1>
-      <p className="text-ink-mute text-sm mt-1 mb-5">ติดตามยอดจ่าย/ค้างจ่าย</p>
+      <div className="text-[12px] text-ink-mute mb-1.5">ติดตามยอดจ่าย/ค้างจ่าย</div>
+      <h1 className="display text-[36px] lg:text-[44px] leading-none mb-6">Fi<span className="italic-serif text-brand-hot">nance</span></h1>
 
       <div className="grid grid-cols-[1.25fr_1fr] gap-3 mb-3">
         <div className="relative overflow-hidden rounded-3xl p-5 text-white shadow-glow"
